@@ -50,6 +50,10 @@ if (empty($fields))
 }
 
 $output = array();
+$list_type = array();
+$show_title = array();
+$title_tag = array();
+$title_class = array();
 
 foreach ($fields as $field)
 {
@@ -69,14 +73,42 @@ foreach ($fields as $field)
 		continue;
 	}
 
-	$output[] = '<li class="field-entry ' . $class . '">' . $content . '</li>';
+	if (isset($field->group_title))
+	{
+	    $gparams = json_decode($field->group_params);
+	    $tag = ($gparams->render_tag == 'dl') ? 'dd' : 'li';
+	    $list_type[$field->group_title] = $gparams->render_tag;
+	    $list_type_class[$field->group_title] = $gparams->render_class;
+	    $show_title[$field->group_title] = $gparams->show_title;
+	    $title_tag[$field->group_title] = $gparams->title_tag;
+	    $title_class[$field->group_title] = $gparams->title_class;
+	    $output[$field->group_title][] = '<' . $tag  . ' class="field-entry ' . $class . '">' . $content . '</' . $tag  . '>';
+	} else {
+	    $list_type['none'] = 'ul';
+	    $list_type_class['none'] = 'fields-container';
+	    $show_title['none'] = 0;
+	    $title_tag['none'] = '';
+	    $title_class[none] = '';
+	    $output['none'][] = '<li class="field-entry ' . $class . '">' . $content . '</li>';
+	}
 }
 
 if (empty($output))
 {
 	return;
 }
-?>
-<ul class="fields-container">
-	<?php echo implode("\n", $output); ?>
-</ul>
+
+foreach ($list_type as $title => $list_type) 
+{
+    if ($show_title[$title] && $list_type != 'dl')
+    {
+        echo '<' . $title_tag[$title] . ' class="' . $title_class[$title] . '">' . $title . '</' . $title . '>' . "\n";
+    }
+    echo '<' . $list_type . ' class="' . $list_type_class[$title] . '">';
+    if ($list_type == 'dl')
+    {
+        echo '<dt class="' . $list_type_class[$title] . '">' . $title . '</dt>' . "\n";
+    }
+    echo implode("\n", $output[$title]);
+    echo '</' . $list_type . '>' . "\n";
+}
