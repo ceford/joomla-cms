@@ -170,9 +170,9 @@
 				label="COM_FIELDS_GROUP_TITLE_TAG_LABEL"
 				default="ul"
 				>
-				<option value="p">P</option>
-				<option value="div">DIV</option>
-				<option value="dl">DL</option>
+				<option value="p">p</option>
+				<option value="div">div</option>
+				<option value="dl">dl</option>
 			</field>
 			
 			<field
@@ -190,11 +190,11 @@
 				label="COM_FIELDS_GROUP_RENDER_TAG_LABEL"
 				default="ul"
 				>
-				<option value="ul">UL</option>
-				<option value="ol">OL</option>
-				<option value="dl">DL</option>
-				<option value="p">P</option>
-				<option value="div">DIV</option>
+				<option value="ul">ul</option>
+				<option value="ol">ol</option>
+				<option value="dl">dl</option>
+				<option value="p">p</option>
+				<option value="div">div</option>
 			</field>
 			
 			<field
