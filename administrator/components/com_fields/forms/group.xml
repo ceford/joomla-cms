@@ -168,11 +168,11 @@
 				name="title_tag"
 				type="list"
 				label="COM_FIELDS_GROUP_TITLE_TAG_LABEL"
-				default="ul"
+				default="p"
+				showon="show_title:1[AND]render_tag:ul,ol,p,div"
 				>
 				<option value="p">p</option>
 				<option value="div">div</option>
-				<option value="dl">dl</option>
 			</field>
 			
 			<field
@@ -182,6 +182,7 @@
 				size="40"
 				validate="CssIdentifier"
 				default="mb-0"
+				showon="show_title:1"
 			/>
 
 			<field
