@@ -73,9 +73,11 @@ foreach ($fields as $field)
 		continue;
 	}
 
-	if (isset($field->group_title))
+	// check gparams for backward compatibility
+	$gparams = json_decode($field->group_params);
+	
+	if (isset($field->group_title) && isset($gparams->render_tag))
 	{
-		$gparams = json_decode($field->group_params);
 		switch ($gparams->render_tag)
 		{
 			case 'dl':
