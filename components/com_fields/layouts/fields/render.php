@@ -75,7 +75,7 @@ foreach ($fields as $field)
 
 	// check gparams for backward compatibility
 	$gparams = json_decode($field->group_params);
-	
+
 	if (isset($field->group_title) && isset($gparams->render_tag))
 	{
 		switch ($gparams->render_tag)
