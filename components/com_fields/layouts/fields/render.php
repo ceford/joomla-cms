@@ -100,7 +100,9 @@ foreach ($fields as $field)
 		$title_tag[$field->group_title] = $gparams->title_tag;
 		$title_class[$field->group_title] = $gparams->title_class;
 		$output[$field->group_title][] = '<' . $tag  . ' class="field-entry ' . $class . '">' . $content . '</' . $tag  . '>';
-	} else {
+	}
+	else
+	{
 		$list_type['none'] = 'ul';
 		$list_type_class['none'] = 'fields-container';
 		$show_title['none'] = 0;
@@ -122,17 +124,20 @@ foreach ($list_type as $title => $list_type)
 		$class = empty($title_class[$title]) ? '' : ' class="' . $title_class[$title] . '"';
 		echo '<' . $title_tag[$title] . $class . '>' . $title . '</' . $title_tag[$title] . '>' . "\n";
 	}
+
 	if (!($list_type == 'p' || $list_type == 'div'))
 	{
 		$class = empty($list_type_class[$title]) ? '' : ' class="' . $list_type_class[$title]  . '"';
 		echo '<' . $list_type . $class . '>';
 	}
+
 	if ($list_type == 'dl')
 	{
 		$class = empty($list_type_class[$title]) ? '' : ' class="' . $list_type_class[$title] . '"';
 		echo '<dt'. $class . '>' . $title . '</dt>' . "\n";
 	}
 	echo implode("\n", $output[$title]);
+
 	if (!($list_type == 'p' || $list_type == 'div'))
 	{
 		echo '</' . $list_type . '>' . "\n";
